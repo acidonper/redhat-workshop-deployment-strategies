@@ -101,7 +101,40 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="02-deployment-strategies.html">2. Deployment Strategies with Argo CD and Argo Rollouts</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-deployment-strategies.html#02-dstrategies-app">2.1 DStrategies App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment-strategies.html#02-deployment-strategies">2.2 Deployment Strategies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment-strategies.html#02-micro-arch">2.2.1 Microservices Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment-strategies.html#02-cd">2.2.2 Continuous Delivery</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment-strategies.html#02-pd">2.2.3 Progressive Delivery</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment-strategies.html#02-argo-rollouts">2.2.4 Argo Rollouts</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="02-deployment-strategies.html#02-bg">2.2.4.1 Blue/Green Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="02-deployment-strategies.html#02-canary">2.2.4.2 Canary Deployment</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="03-blue-green-deployment.html">3. Blue/Green deployment strategy</a>
@@ -423,7 +456,7 @@ spec:
 <p>To test canary deployment we are going to do changes in the backend application dstrategies-back.</p>
 </div>
 <div class="sect2">
-<h3 id="_step_1_deploy_the_canary_version_for_10"><a class="anchor" href="#_step_1_deploy_the_canary_version_for_10"></a>Step 1 - Deploy the canary version for 10%</h3>
+<h3 id="_step_1_deploy_the_canary_version_for_25"><a class="anchor" href="#_step_1_deploy_the_canary_version_for_25"></a>Step 1 - Deploy the canary version for 25%</h3>
 <div class="paragraph">
 <p>We will deploy a new version <strong>V2.0.0</strong>. To do it, we have to edit the files <strong>./canary/dstrategies-back-rollout.yaml</strong> and <strong>./canary/dstrategies-back-configmap.yaml</strong> in order to modify the value <strong>v1.0.0</strong> to <strong>V2.0.0</strong>:</p>
 </div>
