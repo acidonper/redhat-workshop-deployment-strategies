@@ -186,7 +186,7 @@
 <h2 id="_application_architecture"><a class="anchor" href="#_application_architecture"></a>Application architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As mentioned before, we have a very simple application that has two services. One frontal React app call <strong>DStrategies-front</strong> and one backend Quarkus app call <strong>dstrategies-back</strong>. We will use the front app to call several times the back app and see how the back version change during the deployment.</p>
+<p>As mentioned before, we have a very simple application that has two services. One frontal React app called <strong>dstrategies-front</strong> and one backend Quarkus app called <strong>dstrategies-back</strong>. We will use the front app to call several times the back app and see how the back version change during the deployment.</p>
 </div>
 <div class="paragraph">
 <p>To achieve Blue/Green deployment with <strong>Cloud Native</strong> applications using <strong>Argo Rollouts</strong>, we have designed this architecture.</p>
@@ -232,7 +232,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>We will define an active or online service 'dstrategies-back-online' and a preview or offline service 'dstrategies-back-offline'. The idea is the frontend will always use 'dstrategies-back-online' and 'dstrategies-back-offline' will only be used to test our service before trigerring the rollout.</p>
+<p>We will define an active or online service 'dstrategies-back-online' and a preview or offline service 'dstrategies-back-offline'. The idea is the frontend will always use 'dstrategies-back-online' and 'dstrategies-back-offline' will only be used to test our service before triggering the rollout.</p>
 </div>
 </div>
 </div>
@@ -240,7 +240,7 @@
 <h2 id="_generate_dstrategies_app_gitops_deployment_model"><a class="anchor" href="#_generate_dstrategies_app_gitops_deployment_model"></a>Generate DStrategies APP GitOps Deployment Model</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>First of all, it is required to review a set of objects in a our forked git repository in order to configure the deployment correctly for deploying our application following a GitOps model.</p>
+<p>First of all, it is required to review a set of objects in our forked git repository to configure the deployment correctly for deploying our application following a GitOps model.</p>
 </div>
 <div class="paragraph">
 <p>Please follow the next section to understand the required objects and configurations.</p>
@@ -248,16 +248,16 @@
 <div class="sect2">
 <h3 id="_review_services"><a class="anchor" href="#_review_services"></a>Review Services</h3>
 <div class="paragraph">
-<p>As the previous picture showns, it is required to generate a couple of services that will be used to redirect the traffic to the correct DStrategies App version.</p>
+<p>As the previous picture shows, it is required to generate a couple of services that will be used to redirect the traffic to the correct DStrategies App version.</p>
 </div>
 <div class="paragraph">
-<p>Please take a look at the files <strong>./blue-green/dstrategies-back-service-online.yaml</strong> and <strong>./blue-green/dstrategies-back-service-offline.yaml</strong> in order to understand the objects and get the names of these elements.</p>
+<p>Please take a look at the files <strong>./blue-green/dstrategies-back-service-online.yaml</strong> and <strong>./blue-green/dstrategies-back-service-offline.yaml</strong> to understand the objects and get the names of these elements.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_modify_rollout_strategy"><a class="anchor" href="#_modify_rollout_strategy"></a>Modify Rollout strategy</h3>
 <div class="paragraph">
-<p>The Rollout object controls the application deployment. If you look closely, it is possible to find many similarities between an Argo Rollout objects and a Kubernetes Deployment. The main different btween the previous objects referenced is the rollout strategy field.</p>
+<p>The Rollout object controls the application deployment. If you look closely, it is possible to find many similarities between an Argo Rollout object and a Kubernetes Deployment. The main difference between the previous objects referenced is the rollout strategy field.</p>
 </div>
 <div class="paragraph">
 <p>Please edit a file named <strong>./blue-green/dstrategies-back-rollout.yaml</strong> in oder to add the required <strong>&lt;SERVICE_OFFLINE&gt;</strong> and <strong>&lt;SERVICE_ONLINE&gt;</strong> service names:</p>
@@ -281,7 +281,7 @@
 <p>We have created an AnalysisTemplate 'dstrategies-back-analysis-template' that just validates the health of the application, for production environments a better analysis should be done. <strong>Argo Rollouts</strong> use this AnalysisTemplate to validate a new version and set whether it is ready to be promoted or not.</p>
 </div>
 <div class="paragraph">
-<p>Please edit a file named <strong>./blue-green/dstrategies-back-analysis-template.yaml</strong> in oder to add the required <strong>&lt;USERNAME&gt;</strong> that helps to reference the user namespace in the healthcheck url.</p>
+<p>Please edit a file named <strong>./blue-green/dstrategies-back-analysis-template.yaml</strong> to add the required <strong>&lt;USERNAME&gt;</strong> that helps to reference the user namespace in the healthcheck URL.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -311,10 +311,10 @@ For more information about AnalysisTemplate, please visit the following <a href=
 <div class="sect2">
 <h3 id="_modify_back_service_url"><a class="anchor" href="#_modify_back_service_url"></a>Modify back service URL</h3>
 <div class="paragraph">
-<p>Finally, it is required to create a <strong>Deployment</strong> object in order to deploy the frontend application. This application helps us to test the blue-green rollout strategy from a web interface and see backend information.</p>
+<p>Finally, it is required to create a <strong>Deployment</strong> object to deploy the frontend application. This application helps us to test the blue-green rollout strategy from a web interface and see backend information.</p>
 </div>
 <div class="paragraph">
-<p>In order to allow communication between the frontend and the backend, it is required to edit the file named <strong>./blue-green/dstrategies-frontend-deployment.yaml</strong> in oder to add the required <strong>&lt;USERNAME&gt;</strong> and <strong>&lt;OCP_APPS_DOMAIN&gt;</strong>.</p>
+<p>To allow communication between the frontend and the backend, it is required to edit the file named <strong>./blue-green/dstrategies-frontend-deployment.yaml</strong> to add the required <strong>&lt;USERNAME&gt;</strong> and <strong>&lt;OCP_APPS_DOMAIN&gt;</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -345,7 +345,7 @@ git push</code></pre>
 <h2 id="_argo_cd_application"><a class="anchor" href="#_argo_cd_application"></a>Argo CD Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We are going to create the application <strong>DStrategies</strong> in order to apply the files modified previously, that we will use to test Blue/Green deployment. Please edit the following yaml and set your own GitHub repository in the <strong>reportURL</strong>. Create a file called <strong>application-dstrategies-blue-green.yaml</strong></p>
+<p>We are going to create the application <strong>DStrategies</strong> to apply the files modified previously, that we will use to test Blue/Green deployment. Please edit the following yaml and set your own GitHub repository in the <strong>reportURL</strong>. Create a file called <strong>application-dstrategies-blue-green.yaml</strong></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -401,10 +401,10 @@ It is important to wait for <strong>Healthy</strong> and <strong>Synced</strong>
 <h2 id="_test_dstrategies_application"><a class="anchor" href="#_test_dstrategies_application"></a>Test Dstrategies application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We have deployed the <strong>dstrategies</strong> with ArgoCD. We can test the online and offline services in order to ensure that they are up and running.</p>
+<p>We have deployed the <strong>dstrategies</strong> with ArgoCD. We can test the online and offline services to ensure that they are up and running.</p>
 </div>
 <div class="paragraph">
-<p>In order to test the online service, it is required to extract the frontend url:</p>
+<p>To test the online service, it is required to extract the frontend URL:</p>
 </div>
 <div class="listingblock lines_space console-input">
 <div class="content">
@@ -412,7 +412,10 @@ It is important to wait for <strong>Healthy</strong> and <strong>Synced</strong>
 </div>
 </div>
 <div class="paragraph">
-<p>Visit the frontend route via your web browser, push - JUMP- button and ensure the following message is displaying in your screen:</p>
+<p>Or you can use this <a href="http://dstrategies-frontend-%USER%-blue-green.apps.%CLUSTER%/">URL</a></p>
+</div>
+<div class="paragraph">
+<p>Visit the frontend via your web browser, push - JUMP- button and ensure the following message is displaying on your screen:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -425,8 +428,12 @@ It is important to wait for <strong>Healthy</strong> and <strong>Synced</strong>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl "$(oc get routes dstrategies-back-offline -n %USER%-blue-green --template='http://{{.spec.host}}')/dstrategies-back"
-{"metadata":{"version":"V1.0.0","colour":"Blue"}}</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl "$(oc get routes dstrategies-back-offline -n %USER%-blue-green --template='http://{{.spec.host}}')/dstrategies-back"</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">{"metadata":{"version":"V1.0.0","colour":"Green"}}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -434,7 +441,7 @@ It is important to wait for <strong>Healthy</strong> and <strong>Synced</strong>
 Because right now we have both routers against the same rollout revision we will have the same response with version <strong>V1.0.0</strong>:</p>
 </div>
 <div class="paragraph">
-<p>We can also see the rollout*s status.</p>
+<p>We can also see the rollout&#8217;s status.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -459,8 +466,7 @@ Argo Rollouts offers a Kubectl plugin to enrich the experience with Rollouts <a 
 ⟳ dstrategies-back                            Rollout     ✔ Healthy  12m
 └──# revision:1
    └──⧉ dstrategies-back-67fc9fb79b           ReplicaSet  ✔ Healthy  12m  stable,active
-      ├──□ dstrategies-back-67fc9fb79b-49k25  Pod         ✔ Running  12m  ready:1/1
-      └──□ dstrategies-back-67fc9fb79b-p7jk9  Pod         ✔ Running  12m  ready:1/1</code></pre>
+      └──□ dstrategies-back-67fc9fb79b-49k25  Pod         ✔ Running  12m  ready:1/1</code></pre>
 </div>
 </div>
 </div>
@@ -482,24 +488,24 @@ Argo Rollouts offers a Kubectl plugin to enrich the experience with Rollouts <a 
 </ol>
 </div>
 <div class="paragraph">
-<p>To test Blue/Green deployment we are going to do changes in the backend application dstrategies-back.</p>
+<p>To test Blue/Green deployment we are going to do changes in the backend application <strong>dstrategies-back</strong>.</p>
 </div>
 <div class="paragraph">
-<p>We have already deployed the dstrategies-back version V1.0.0, and we are ready to use a new dstrategies-back version V2.0.0 that has a new <strong>description</strong> attribute.</p>
+<p>We have already deployed the <strong>dstrategies-back</strong> version V1.0.0, and we have a new dstrategies-back version V2.0.0 ready to be deployed.</p>
 </div>
 <div class="sect2">
 <h3 id="_step_1_deploy_a_new_version"><a class="anchor" href="#_step_1_deploy_a_new_version"></a>Step 1 - Deploy a new version</h3>
 <div class="paragraph">
-<p>We will deploy a new version <strong>V2.0.0</strong>. To do it, we have to edit the files <strong>./blue-green/dstrategies-back-rollout.yaml</strong> and <strong>./blue-green/dstrategies-back-configmap.yaml</strong> in order to modify the value <strong>v1.0.0</strong> to <strong>V2.0.0</strong>:</p>
+<p>We will deploy a new version <strong>V2.0.0</strong>. To do it, we have to edit the files <strong>./blue-green/dstrategies-back-rollout.yaml</strong> and <strong>./blue-green/dstrategies-back-configmap.yaml</strong> to modify the value <strong>v1.0.0</strong> to <strong>V2.0.0</strong>:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">          image: 'quay.io/dseveria/dstrategies-back:V1.0.0' &lt;---</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">          image: 'quay.io/dseveria/dstrategies-back:V2.0.0' &lt;---</code></pre>
 </div>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">  application.version: V1.0.0 &lt;---</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">  application.version: V2.0.0 &lt;---</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -530,13 +536,11 @@ NAME                                  KIND         STATUS        AGE  INFO
 ⟳ dstrategies-back                            Rollout      ॥ Paused      27m
 ├──# revision:2
 │  ├──⧉ dstrategies-back-9dc6f576f            ReplicaSet   ✔ Healthy     36s  preview
-│  │  ├──□ dstrategies-back-9dc6f576f-6vqp5   Pod          ✔ Running     36s  ready:1/1
-│  │  └──□ dstrategies-back-9dc6f576f-lmgd7   Pod          ✔ Running     36s  ready:1/1
+│  │  └──□ dstrategies-back-9dc6f576f-6vqp5   Pod          ✔ Running     36s  ready:1/1
 │  └──α dstrategies-back-9dc6f576f-2-pre      AnalysisRun  ✔ Successful  31s  ✔ 1
 └──# revision:1
    └──⧉ dstrategies-back-67fc9fb79b           ReplicaSet   ✔ Healthy     27m  stable,active
-      ├──□ dstrategies-back-67fc9fb79b-49k25  Pod          ✔ Running     27m  ready:1/1
-      └──□ dstrategies-back-67fc9fb79b-p7jk9  Pod          ✔ Running     27m  ready:1/1</code></pre>
+      └──□ dstrategies-back-67fc9fb79b-49k25  Pod          ✔ Running     27m  ready:1/1</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -551,15 +555,10 @@ NAME                                  KIND         STATUS        AGE  INFO
 </div>
 </div>
 <div class="paragraph">
-<p>In order to test the online service, it is required to extract the frontend url:</p>
-</div>
-<div class="listingblock lines_space console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route dstrategies-frontend -n %USER%-blue-green -o jsonpath='{.spec.host}'</code></pre>
-</div>
+<p>To test the online service, you can use the frontend <a href="http://dstrategies-frontend-%USER%-blue-green.apps.%CLUSTER%/">URL</a></p>
 </div>
 <div class="paragraph">
-<p>Visit the frontend route via your web browser, push - JUMP- button and ensure the following message is displaying in your screen:</p>
+<p>Visit the frontend route via your web browser, push - JUMP- button and ensure the following message is displaying on your screen:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -568,12 +567,19 @@ NAME                                  KIND         STATUS        AGE  INFO
 <div class="title">Figure 2. Frontend Interface</div>
 </div>
 <div class="paragraph">
-<p>In addition, regarding testing the offline service, it is required to get the Offline route and check the version is <strong>V2.0.0</strong>:</p>
+<p>We can see that nothing has changed for the users.</p>
+</div>
+<div class="paragraph">
+<p>In addition, regarding testing the offline service, it is required to get the Offline route and check the version is <strong>V2.0.0</strong> and the colour is <strong>Blue</strong>:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl "$(oc get routes dstrategies-back-offline -n %USER%-blue-green --template='http://{{.spec.host}}')/dstrategies-back"
-{"metadata":{"version":"V2.0.0","colour":"Blue"}}</code></pre>
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">curl "$(oc get routes dstrategies-back-offline -n %USER%-blue-green --template='http://{{.spec.host}}')/dstrategies-back"</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">{"metadata":{"version":"V2.0.0","colour":"Blue"}}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -581,7 +587,7 @@ NAME                                  KIND         STATUS        AGE  INFO
 </div>
 <div class="paragraph">
 <p>We have to be careful with those tests in a production environment because the product microservice will call the online dependencies.
-If this dependency is for example a production DB we will create the things that our <strong>Smoke tests</strong> do.</p>
+If this dependency is for example a production DB we will create the things.</p>
 </div>
 </div>
 <div class="sect2">
@@ -590,7 +596,7 @@ If this dependency is for example a production DB we will create the things that
 <p>We are going to open the new version to final users.</p>
 </div>
 <div class="paragraph">
-<p>Execute this command to promote dstrategies-back:</p>
+<p>Argo Rollouts provide this command to promote dstrategies-back:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -607,12 +613,10 @@ NAME                                  KIND         STATUS        AGE  INFO
 ⟳ dstrategies-back                            Rollout      ✔ Healthy     88m
 ├──# revision:2
 │  ├──⧉ dstrategies-back-9dc6f576f            ReplicaSet   ✔ Healthy     62m  stable,active
-│  │  ├──□ dstrategies-back-9dc6f576f-6vqp5   Pod          ✔ Running     62m  ready:1/1
 │  │  └──□ dstrategies-back-9dc6f576f-lmgd7   Pod          ✔ Running     62m  ready:1/1
 │  └──α dstrategies-back-9dc6f576f-2-pre      AnalysisRun  ✔ Successful  62m  ✔ 1
 └──# revision:1
    └──⧉ dstrategies-back-67fc9fb79b           ReplicaSet   ✔ Healthy     88m  delay:27s
-      ├──□ dstrategies-back-67fc9fb79b-49k25  Pod          ✔ Running     88m  ready:1/1
       └──□ dstrategies-back-67fc9fb79b-p7jk9  Pod          ✔ Running     88m  ready:1/1</code></pre>
 </div>
 </div>
@@ -634,7 +638,6 @@ NAME                                  KIND         STATUS        AGE  INFO
 ⟳ dstrategies-back                           Rollout      ✔ Healthy     89m
 ├──# revision:2
 │  ├──⧉ dstrategies-back-9dc6f576f           ReplicaSet   ✔ Healthy     62m  stable,active
-│  │  ├──□ dstrategies-back-9dc6f576f-6vqp5  Pod          ✔ Running     62m  ready:1/1
 │  │  └──□ dstrategies-back-9dc6f576f-lmgd7  Pod          ✔ Running     62m  ready:1/1
 │  └──α dstrategies-back-9dc6f576f-2-pre     AnalysisRun  ✔ Successful  62m  ✔ 1
 └──# revision:1
@@ -650,15 +653,10 @@ NAME                                  KIND         STATUS        AGE  INFO
 </div>
 </div>
 <div class="paragraph">
-<p>In order to test the new online service, it is required to extract the frontend url:</p>
-</div>
-<div class="listingblock lines_space console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route dstrategies-frontend -n %USER%-blue-green -o jsonpath='{.spec.host}'</code></pre>
-</div>
+<p>To test the new online service, you can use the frontend <a href="http://dstrategies-frontend-%USER%-blue-green.apps.%CLUSTER%/">URL</a></p>
 </div>
 <div class="paragraph">
-<p>Visit the frontend route via your web browser, push - JUMP- button and ensure the following message is displaying in your screen:</p>
+<p>Visit the frontend route via your web browser, push - JUMP- button and ensure the following message is displaying on your screen:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -725,15 +723,10 @@ NAME                                          KIND         STATUS        AGE   I
 </div>
 </div>
 <div class="paragraph">
-<p>In order to test the online service, it is required to extract the frontend url:</p>
-</div>
-<div class="listingblock lines_space console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route dstrategies-frontend -n %USER%-blue-green -o jsonpath='{.spec.host}'</code></pre>
-</div>
+<p>To test the online service, you can use the frontend <a href="http://dstrategies-frontend-%USER%-blue-green.apps.%CLUSTER%/">URL</a></p>
 </div>
 <div class="paragraph">
-<p>Visit the frontend route via your web browser, push - JUMP- button and ensure the following message is displaying in your screen:</p>
+<p>Visit the frontend route via your web browser, push - JUMP- button and ensure the following message is displaying on your screen:</p>
 </div>
 <div class="imageblock">
 <div class="content">
